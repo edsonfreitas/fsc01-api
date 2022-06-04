@@ -1,0 +1,40 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider = "mysql"
+  url = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+//Tabela Users
+model User {
+  id String @id @default(cuid())
+  name String
+  email String @unique
+  username String @unique
+  password String 
+  //tweets da tabela Tweet
+  tweets Tweet []
+}
+
+//Tabela Tweets
+model Tweet {
+  id String @id @default(cuid())
+  userId String
+  text String
+  //conectar a tabela User à tabela Tweet usando a sintaxe do prisma
+
+  user User @relation(fields: [userId], references: [id])
+
+  //Chave Estrangeira com index para buscas mais rápidas
+  @@index([userId])
+}
+
+
+
