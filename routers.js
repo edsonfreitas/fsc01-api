@@ -17,11 +17,20 @@ router.get("/tweets", async (ctx) => {
 
   try {
     Jwt.verify(token, process.env.JWT_SECRET);
-    const tweets = await prisma.tweet.findMany(); //promise
+    const tweets = await prisma.tweet.findMany({
+      include:{
+        user: true
+      }
+    }); //promise
     ctx.body = tweets;
-  } catch (error) {
-    ctx.status = 401;
-    return;
+    } catch (error) {
+      if(typeof error.equals('JsonWebTokenError') ){
+      ctx.status = 401;
+      return;
+    }
+
+    ctx.status = 500;
+      return;
   }
 });
 
@@ -34,17 +43,17 @@ router.post("/tweets", async (ctx) => {
   }
 
   try {
-    const payload = Jwt.verify(token, process.env.JWT_SECRET);
+    const payload = Jwt.verify(token, process.env.JWT_SECRET)
     const tweet = await prisma.tweet.create({
       data: {
         userId: payload.sub,
-        text: ctx.req.body.text,
+        text: ctx.request.body.text
       },
     });
 
     ctx.body = tweet;
   } catch (error) {
-    ctx.status = 401;
+    ctx.status = 401
     return;
   }
 });
