@@ -1,14 +1,11 @@
-import koa from 'koa'
-import bodyParser from 'koa-bodyparser';
-import cors from '@koa/cors'
+import koa from "koa";
+import bodyParser from "koa-bodyparser";
+import cors from "@koa/cors";
 
-import { router } from "./routers.js";
+import { router } from "./routes.js";
 
-export const app = new koa()
+export const app = new koa();
 
-app.use(cors())
-app.use(bodyParser())
-app
-  .use(router.routes())
-  .use(router.allowedMethods());
- 
+app.use(cors());
+app.use(bodyParser());
+app.use(router.routes()).use(router.allowedMethods());
