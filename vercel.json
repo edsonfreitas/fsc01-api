@@ -1,8 +1,6 @@
 {
-  "functions": {
-    "engines": {
-      "node": "22.x"
-    }
+  "engines": {
+    "node": "18.x"
   },
   "rewrites": [
     {
