@@ -1,12 +1,11 @@
 {
   "functions": {
     "api/index.js": {
-      "runtime": "@vercel/node@1.18.x"
-    },
-    "engines": {
-      "node": "18.x"
+      "runtime": "@vercel/node@1.18.x",
+      "engines": "18.x"
     }
   },
+
   "rewrites": [
     {
       "source": "/(.*)",
