@@ -10,4 +10,6 @@ app.use(cors());
 app.use(bodyParser());
 app.use(router.routes()).use(router.allowedMethods());
 
-export default app.callback();
+export default (req, res) => {
+  app.callback()(req, res);
+};
