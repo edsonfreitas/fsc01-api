@@ -8,8 +8,10 @@ export const app = new koa();
 
 app.use(cors());
 app.use(bodyParser());
-app.use(router.routes()).use(router.allowedMethods());
+app.use(router.routes())
+app.use(router.allowedMethods());
 
-export default (req, res) => {
+
+export default function handler(req, res){
   app.callback()(req, res);
 };
