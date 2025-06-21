@@ -1,6 +1,8 @@
 import { app } from "./setup.js";
+import handler from "./setup.js"
 
-app.listen(9901, () => console.log("Servidor rodando na porta 9901"));
+const PORT = 9902
 
-export default app.callback();
+app.listen(PORT || 9901, () => console.log("Servidor rodando na porta 9901"));
 
+export default handler

@@ -9,3 +9,5 @@ export const app = new koa();
 app.use(cors());
 app.use(bodyParser());
 app.use(router.routes()).use(router.allowedMethods());
+
+export default app.callback();
