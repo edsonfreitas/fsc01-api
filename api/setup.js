@@ -4,7 +4,7 @@ import cors from "@koa/cors";
 
 import { router } from "./routes.js";
 
-export const app = new koa();
+const app = new koa();
 
 app.use(cors());
 app.use(bodyParser());
@@ -12,6 +12,7 @@ app.use(router.routes())
 app.use(router.allowedMethods());
 
 
-export default function handler(req, res){
-  app.callback()(req, res);
-};
+const handler = app.callback();
+export { app }; 
+
+export default (req, res) => handler(req, res);

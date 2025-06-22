@@ -12,7 +12,7 @@ router.get("/tweets", async (ctx) => {
 
   if (!token) {
     ctx.status = 401;
-    ctx.body = {message: "Token de autorização ausente"}
+    ctx.body = { message: "Token de autorização ausente" };
     return;
   }
 
@@ -26,14 +26,17 @@ router.get("/tweets", async (ctx) => {
     ctx.body = tweets;
   } catch (error) {
     //equals
-    if (typeof error instanceof Jwt.JsonWebTokenError || Jwt.TokenExpiredError) {
+    if (
+      error instanceof Jwt.JsonWebTokenError ||
+      error instanceof Jwt.TokenExpiredError
+    ) {
       ctx.status = 401;
-      ctx.body = {message: "Token inválido ou expirado"}
+      ctx.body = { message: "Token inválido ou expirado" };
       return;
     }
-    console.error("Erro ao buscar tweets: "+ error)
+    console.error("Erro ao buscar tweets: " + error);
     ctx.status = 500;
-    ctx.body = {message: "Erro interno do servidor."}
+    ctx.body = { message: "Erro interno do servidor." };
     return;
   }
 });
@@ -116,7 +119,7 @@ router.get("/login", async (ctx) => {
 
   if (!user) {
     ctx.status = 404;
-    ctx.body = {message: "Credenciais inválidas"}
+    ctx.body = { message: "Credenciais inválidas" };
     return;
   }
 
@@ -139,12 +142,11 @@ router.get("/login", async (ctx) => {
       accessToken,
     };
     return;
-  }else{
-    ctx.status= 401
-    ctx.body = {message: "Credenciais inválidas"}
+  } else {
+    ctx.status = 401;
+    ctx.body = { message: "Credenciais inválidas" };
+    return;
   }
-
-  ctx.status = 404;
 });
 
 //Delete tweet
