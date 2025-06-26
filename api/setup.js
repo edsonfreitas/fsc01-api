@@ -8,7 +8,9 @@ const app = new koa();
 
 app.use(
   cors({
-    origin: "https://fsc01-web-7x1w.vercel.app/",
+    origin: "https://fsc01-web-7x1w.vercel.app",
+    allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowHeaders: ['Content-Type', 'Authorization']
     credentials: true,
   })
 );
