@@ -106,7 +106,7 @@ router.post("/signup", async (ctx) => {
 });
 
 //Rota Login
-router.get("/login", async (ctx) => {
+router.post("/login", async (ctx) => {
   const [, token] = ctx.request.headers.authorization.split(" ");
   const [email, plainTextpassword] = Buffer.from(token, "base64")
     .toString()
