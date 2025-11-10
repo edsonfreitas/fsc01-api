@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "compile": "tsc && node --trace-deprecation dist/src/app.js",
+     "build": "prisma generate && next build",
     "start": "node api/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
