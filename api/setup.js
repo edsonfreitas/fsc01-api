@@ -8,7 +8,7 @@ const app = new koa();
 
 app.use(
   cors({
-    origin: "https://fsc01-api-tweet.vercel.app",
+    origin: "*",
     allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
