@@ -95,13 +95,20 @@ router.post("/signup", async (ctx) => {
       accessToken,
     };
   } catch (error) {
-    if (error.meta && !error.meta.target) {
+    console.error("ERRO NO SIGNUP:", error);
+
+    if (error.code === "P2002") {
       ctx.status = 422;
-      ctx.body = "Email ou nome de usuário já existe.";
+      ctx.body = {
+        message: "Email ou nome de usuário já existe.",
+      };
       return;
     }
+
     ctx.status = 500;
-    ctx.body = "Internal error";
+    ctx.body = {
+      message: "Erro interno do servidor.",
+    };
   }
 });
 
